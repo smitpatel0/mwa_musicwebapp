@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music App Dashboard</title>
+  <style>
+    /* CSS for styling the dashboard */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    .dashboard-container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    button.admin {
+      background: #ff5722;
+    }
+
+    button.admin:hover {
+      background: #e64a19;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Welcome to Music App</h1>
+    <div class="button-container">
+      <button class="admin" onclick="navigateTo('admin')">Admin</button>
+      <button onclick="navigateTo('user')">User</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for button interactions
+    function navigateTo(role) {
+      if (role === 'admin') {
+        alert('Navigating to Admin Dashboard...');
+        // Replace with actual admin dashboard URL
+        window.location.href = '../php/admin_login.php';
+      } else if (role === 'user') {
+        alert('Navigating to User Dashboard...');
+        // Replace with actual user dashboard URL
+        window.location.href = '../dashboard/registration.html';
+      }
+    }
+  </script>
+</body>
+</html>
+

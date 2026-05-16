@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>Setting</title>
+	<style>
+		body{
+			font-family: Arial,sans-serif;
+			margin:0;
+			padding:0;
+		
+			color: #fff;
+		}
+		
+		header{
+			background-color: #2d2d44;
+			color: white;
+			padding:5px;
+			text-align: center;
+		}
+		
+		.container{
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px;
+			background:#2d2d44;
+			border-radius: 8px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0,0.1);
+		}
+		
+		h1,h2{
+			color:white;
+			}
+			
+		ul{
+			list-style: none;
+			padding: 0;
+			}
+			
+		li{
+			margin: 10px 0;
+			}
+		
+		button{
+			background-color:#111;
+			color:gray;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 1rem;
+			width: 100%;
+			text-align: left;
+		}
+		
+		button:hover{
+			background-color: #fff;
+		}
+			
+		footer{
+			background-color: black;
+			color: white;
+			text-align: center;
+			padding: 10px 0;
+			margin-top: 200px;
+		}
+		</style>
+	</head>
+<body>
+	<header>
+		<h1>Settings</h1>
+	</header>
+		<div class="container">
+			<h2>Settings Menu</h2>
+			<ul>
+				<li><button id="edit-personal-info">Edit Personal Info</button></li>
+				<li><button id="change-password">Change Password</button></li>
+				<li><button id="notification-settings">Notification Settings</button></li>
+				<li><button id="delete-account">Delete Account</button></li>
+				<li><button id="logout">Log Out</button></li>
+				<!--<li><button id="dark-mode-toggle">Toggle Dark Mode</button></li>
+				<li><button id="view-liked-songs">View Liked songs</button></li>
+				<li><button id="privacy-settings">Privacy Settings</button></li>
+				<li><button id="language-settings">Change Language</button></li>
+				<li><button id="manage-subscription">Manage Subscription</button></li>-->
+			</ul>
+		</div>
+		<footer>
+			<p>&copy;2024 Music App.All rights reserved</p>
+		</footer>
+		<script>
+			document.addEventListener('DOMContentLoaded',()=>{
+			/*const darkModeToggle = document.getElementById('dark-mode-toggle');
+			let isDarkMode=false;
+			darkModeToggle.addEventListener('click',()=>{
+				document.body.style.backgroundColor=isDarkMode ? '#f4f4f4' : '#333';
+				document.body.style.color= isDarkMode ? '#333' : '#f4f4f4';
+				isDarkMode = !isDarkMode;
+			});
+			document.getElementById('view-liked-songs').addEventListener('click',()=>{
+				alert('View liked songs functionality coming soon!');
+			});
+			
+			document.getElementById('privacy-settings').addEventListener('click',()=>{
+				alert('Privacy settings functionality coming soon!');
+			});
+			
+			document.getElementById('language-settings').addEventListener('click',()=>{
+				alert('manage subscription functionality coming soon!');
+			});
+			
+			document.getElementById('manage-subscription').addEventListener('click',()=>{
+				alert('Edit personal info functionality coming soon!');
+			});*/
+			
+			document.getElementById('edit-personal-info').addEventListener('click',()=>{
+				window.location.href="../php/edituser.php";
+			});
+	
+			document.getElementById('change-password').addEventListener('click',()=>{
+				window.location.href="../dashboard/login.html";
+			});
+			
+			document.getElementById('notification-settings').addEventListener('click',()=>{
+				alert('Notification functionality coming soon!');
+			});
+			
+			document.getElementById('delete-account').addEventListener('click',()=>{
+				window.location.href="../pages/deleteaccount.html";
+			});
+			
+			document.getElementById('logout').addEventListener('click',()=>{
+				window.location.href="../pages/logout.html";
+			});
+		});
+		</script>
+</body>
+</html>
+			

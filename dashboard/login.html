@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Change Password</title>
+	<link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-form" class="form-box">
+            <h2>Login</h2>
+            <form action="../php/login.php" method="post" onsubmit="validateLoginForm()">           
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <pre>		   <a href="#" onclick="showChangePassword()">Change Password?</a></pre><br>            
+				<button type="submit">Login</button>
+				
+			<div class="login-link">
+			<pre>New User? <a href="registration.html">Click here to register</a></pre>     
+			</div>
+            </form>
+        </div>
+	
+        <div id="change-password-form" class="form-box" style="display: none;">
+            <h2>Change Password</h2>
+            <form action="../php/login.php" method="post" onsubmit="validateChangePasswordForm()">           
+                <input type="hidden" name="action" value="change_password">
+                <input type="text" name="email" placeholder="Email" required>
+                <input type="password" name="current_password" placeholder="Current Password" required>
+                <input type="password" name="new_password" placeholder="New Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
+                <button type="submit">Change Password</button>
+				<pre><a href="#" onclick="showLoginForm()">Back to Login</a></pre>
+            </form>
+        </div>
+    </div>
+	<script src="../javascript/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Albums</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .album-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .album-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .album-cover {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .album-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .album-artist {
+            font-size: 14px;
+            color: #555;
+        }
+        .common-audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .common-audio-player audio {
+            width: 80%;
+            max-width: 500px;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        .controls button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .like-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .like-button.liked {
+            background-color: #2ed573;
+        }
+    </style>
+</head>
+<body>
+    <h1>Album Display</h1>
+    <div class="album-container" id="album-container">
+        <!-- Albums will be dynamically inserted here -->
+    </div>
+
+    <!-- Common Audio Player -->
+    <div class="common-audio-player">
+        <audio id="common-audio" controls>
+            Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+            <button id="loop-button">Loop: Off</button>
+        </div>
+    </div>
+
+    <script src="../javascript/albums.js"></script>
+</body>
+</html>

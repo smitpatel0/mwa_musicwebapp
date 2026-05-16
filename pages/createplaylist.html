@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create playlist</title>
+<style>
+/* General form styling */
+body{
+	background:linear-gradient(to bottom,blue,white);
+	}
+	
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background :#2825;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #111;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Song section styling */
+.song {
+    background-color: #2825;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.song label {
+    margin-top: 0;
+}
+
+/* Button styling */
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    form {
+        padding: 15px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+        font-size: 12px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+<body>
+
+<form action="../php/playlists.php" method="POST" enctype="multipart/form-data">
+    <label for="playlist-name" style="color:white">Playlist Name:</label>
+    <input type="text" id="playlist-name" name="playlist-name" required><br>
+
+    <label for="description" style="color:white">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <!-- Song 1 -->
+    <div class="song">
+        <label for="song-title-1">Song Title:</label>
+        <input type="text" id="song-title-1" name="song-title-1" required><br>
+
+        <label for="song-artist-1">Artist Name:</label>
+        <input type="text" id="song-artist-1" name="song-artist-1" required><br>
+
+        <label for="song-cover-1">Album Cover:</label>
+        <input type="file" id="song-cover-1" name="song-cover-1" required><br>
+
+        <label for="song-audio-1">Song File:</label>
+        <input type="file" id="song-audio-1" name="song-audio-1" required><br>
+    </div>
+
+    <!-- Song 2 -->
+    <div class="song">
+        <label for="song-title-2">Song Title:</label>
+        <input type="text" id="song-title-2" name="song-title-2" required><br>
+
+        <label for="song-artist-2">Artist Name:</label>
+        <input type="text" id="song-artist-2" name="song-artist-2" required><br>
+
+        <label for="song-cover-2">Album Cover:</label>
+        <input type="file" id="song-cover-2" name="song-cover-2" required><br>
+
+        <label for="song-audio-2">Song File:</label>
+        <input type="file" id="song-audio-2" name="song-audio-2" required><br>
+    </div>
+
+    <button type="submit">Create Playlist</button>
+</form>
+
+</body>
+</html>

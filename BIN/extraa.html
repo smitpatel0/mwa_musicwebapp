@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs - Spotify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .liked-songs-header {
+            background: linear-gradient(135deg, #450af5, #8e8ee5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .song-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .song-card {
+            background: #181818;
+            padding: 15px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .song-card:hover {
+            background: #282828;
+        }
+
+        .song-cover {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .song-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .song-artist {
+            color: #b3b3b3;
+            font-size: 0.9em;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .play-button, .like-button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .liked {
+            color: #1db954;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="liked-songs-header">
+            <h1>Liked Songs</h1>
+            <p>Your liked songs</p>
+            <button class="play-button">▶ Play</button>
+        </div>
+
+        <div class="song-grid">
+            <!-- Repeat this block for each song -->
+            <div class="song-card">
+                <img src="https://via.placeholder.com/200" class="song-cover" alt="Album Cover">
+                <div class="song-title">Song 1</div>
+                <div class="song-artist">Queen</div>
+                <div class="controls">
+                    <button class="play-button">▶</button>
+                    <button class="like-button liked">♥</button>
+                </div>
+            </div>
+
+            <div class="song-card">
+                <img src="https://via.placeholder.com/200" class="song-cover" alt="Album Cover">
+                <div class="song-title">Song 2</div>
+                <div class="song-artist">King</div>
+                <div class="controls">
+                    <button class="play-button">▶</button>
+                    <button class="like-button">♥</button>
+                </div>
+            </div>
+
+            <!-- Add more song cards as needed -->
+        </div>
+    </div>
+
+    <script>
+        // Toggle like button
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('liked');
+                updateLikeCount();
+            });
+        });
+
+        // Play button functionality
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const songCard = this.closest('.song-card');
+                const title = songCard.querySelector('.song-title').textContent;
+                alert(`Now playing: ${title}`);
+            });
+        });
+
+        // Update like count (simple version)
+        function updateLikeCount() {
+            const likedCount = document.querySelectorAll('.liked').length;
+            document.querySelector('.liked-songs-header p').textContent = 
+                `${likedCount} liked songs`;
+        }
+
+        // Header play button
+        document.querySelector('.liked-songs-header .play-button').addEventListener('click', () => {
+            alert('Shuffling all liked songs!');
+        });
+    </script>
+</body>
+</html>

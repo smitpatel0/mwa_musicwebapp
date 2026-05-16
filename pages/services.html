@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App - Services</title>
+    <style>
+	/* services.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:#fff;
+   
+}
+
+header {
+    background-color: #2d2d44;
+    color: white;
+	padding:1px;
+    text-align: center;
+}
+
+#setcolor{
+	color:#fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background:#2d2d44;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service {
+    flex: 1 1 calc(33.333% - 20px);
+	color:#fff;
+    padding: 20px;
+    border-radius: 8px;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    text-align: center;
+}
+
+.service h3 {
+    margin-bottom: 10px;
+}
+
+.service p {
+    font-size: 0.9rem;
+}
+
+footer {
+    background-color: #2d2d44;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Our Services</h1>
+    </header>
+
+    <div class="container" id="services">
+        <h2 id="setcolor">Our Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Music Streaming</h3>
+                <p>Stream millions of songs from artists around the globe, anytime and anywhere.</p>
+            </div>
+            <div class="service">
+                <h3>Playlist Creation</h3>
+                <p>Create personalized playlists to suit your mood and share them with friends.</p>
+            </div>
+            <div class="service">
+                <h3>Offline Listening</h3>
+                <p>Download your favorite tracks and listen offline without interruptions.</p>
+            </div>
+            <div class="service">
+                <h3>Artist Support</h3>
+                <p>Directly support your favorite artists through our unique contribution features.</p>
+            </div>
+            <div class="service">
+                <h3>Music Discovery</h3>
+                <p>Discover new music tailored to your taste with our smart recommendation engine.</p>
+            </div>
+            <div class="service">
+                <h3>Live Events</h3>
+                <p>Stay updated on live concerts and events happening near you.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Music App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Registration</title>
+<link rel="stylesheet" href="../css/registration.css">
+</head>
+<body>
+	<div class="form-container">
+	<h2>Register</h2>
+	
+	<form id="registerForm" action="../php/registration.php" method="post" "onsubmit=return validateForm()">
+	<label for="username">Username</label>
+	<input type="text" id="username" name="username" placeholder="Enter username" autocomplete="off">
+	<div id="usernameError" class="error"></div>
+	<label for="email">Email</label>
+	<input type="email" id="email" name="email" placeholder="Enter email" autocomplete="off">
+	<div id="emailError" class="error"></div>
+	<label for="password">Password</label>
+	<input type="password" id="password" name="password" placeholder="Enter password" autocomplete="off">
+	<div id="passwordError" class="error"></div>
+	<input type="submit" value="Register">
+	</form>
+	
+	<div class="login-link">
+	<pre>Existing user? <a href="login.html">Click here to login</a></pre>
+	</div>
+	</div>
+	
+	<script src="../javascript/registration.js"></script>
+</body>
+</html>

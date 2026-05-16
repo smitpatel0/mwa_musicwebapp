@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Menu</title>
+    <link rel="stylesheet" href="../css/new.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../assets/other images/MusicLogo.jpeg" alt="MusicWave Logo">
+            <h3>Welcome To The MusicWave..</h3>
+			
+			<!--<nav>
+		<div>
+			<input type="text" id="search-bar" placeholder="Search for songs...">
+		</div>
+		</nav>
+		<div class="user-actions">
+			<button class="btn" onclick=window.location.href="login.html">Log In</button>
+			<button class="btn btn-primary" onclick=window.location.href="registration.html">Sign Up</button>
+		</div>-->
+		
+			<a href="../dashboard/main_dashboard.html" class="logout-link" onclick="confirmLogout()">Logout</a>
+			<form id="logoutForm" method="POST" action="../php/logout.php" style="display: none;">
+			<input type="hidden" name="action" value="logout">
+			</form>
+        </div>
+    </header>
+    <div class="container">
+        <div class="menu">
+            <div class="nav">
+                <h3>Menu</h3>
+                <a href="../php/musicgenre.php">Search</a>
+				<a href="../php/account.php">My Account</a>
+				<a href="../pages/displayalbums.html">View Albums</a>
+                <a href="../pages/displayplaylists.html">View Playlists</a>
+                <a href="../pages/likes.html">Liked Songs</a>
+                <a href="../pages/services.html">Services</a>
+                <a href="../pages/about.html">About</a>
+                <a href="../pages/contactus.html">Contact Us</a>
+                <a href="../pages/premiumpay.html">Go Premium</a>
+                <a href="../pages/settings.html">Settings</a>
+            </div>
+            <div class="footer">
+                <p>&copy;2025 Music Company</p>
+            </div>
+        </div>
+		<!--<section class="playlist-section">
+					<h2>Your Playlists</h2>
+					<div class="playlists">
+						<div class="playlist">
+							<img src="../assets/cover images/bellaciao.jpeg" alt="playlist1">
+							<h3>Top Hits</h3>
+							<p>10 trending songs</p>
+						</div>
+				</section>-->
+        <!-- 🎵 Playlists Section -->
+        <section class="playlist-section">
+            <h2>Recommandations</h2>
+            <div class="playlists" id="playlists-container">
+                <!-- Playlists will be dynamically inserted here -->
+            </div>
+        
+            <!-- 🎧 Global Music Player -->
+            <div class="music-player">
+                <audio id="audio-player" controls controlsList="nodownload">
+                    <!-- The controls attribute gives us the basic player interface -->
+                    <p>Your browser does not support HTML5 audio.</p>
+                </audio>
+                <div class="player-controls">
+                    <button onclick="prevSong()">⏮️</button>
+                    <!--<button onclick="togglePlayPause()">▶️/⏸️</button>-->
+                    <button onclick="nextSong()">⏭️</button>
+                    <button onclick="toggleLoop()">🔁</button>
+                </div>
+                <p id="current-song">No song playing</p>
+                <!-- Removed the Duration and Current Time elements -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let songs = []; // ✅ Declare songs array
+        let currentSongIndex = 0;
+        let audioPlayer = document.getElementById("audio-player");
+        let currentSongText = document.getElementById("current-song");
+
+        // 🎵 Fetch playlists and populate songs
+        fetch('../php/fetch_playlists.php')
+            .then(response => response.json())
+            .then(playlists => {
+                console.log("Fetched Playlists:", playlists);
+                const playlistsContainer = document.getElementById('playlists-container');
+
+                playlists.forEach((playlist, index) => {
+                    if (!playlist.playlist_name || !playlist.playlist_audio) {
+                        console.warn(`Skipping playlist ${index}: Missing name or audio`);
+                        return;
+                    }
+
+                     const playlistDiv = document.createElement('div');
+                playlistDiv.className = 'playlist';
+
+                const playlistImage = document.createElement('img');
+                playlistImage.src = `../php/${playlist.playlist_cover}`;
+                playlistImage.alt = `Cover for ${playlist.playlist_name}`;
+
+                const playlistName = document.createElement('h3');
+                playlistName.textContent = playlist.playlist_name;
+
+                const playlistDescription = document.createElement('p');
+                playlistDescription.textContent = playlist.description || "No description available.";
+
+                const playButton = document.createElement('button');
+                playButton.textContent = "▶️ Play";
+                playButton.onclick = () => playSong(index);
+
+                // 🎵 Like Button (Adds playlist to liked songs)
+                const likeButton = document.createElement('button');
+                likeButton.textContent = "♥";
+                likeButton.classList.add("like-button");
+                likeButton.onclick = () => likePlaylist(playlist.id, likeButton);
+
+                playlistDiv.appendChild(playlistImage);
+                playlistDiv.appendChild(playlistName);
+                playlistDiv.appendChild(playlistDescription);
+                playlistDiv.appendChild(playButton);
+                playlistDiv.appendChild(likeButton);
+                playlistsContainer.appendChild(playlistDiv);
+
+                    // ✅ Push song details into the songs array
+                    songs.push({
+                        url: `../php/${playlist.playlist_audio}`,
+                        name: playlist.playlist_name,
+                        description: playlist.description
+                    });
+
+                    console.log(`Added song: ${playlist.playlist_name}, Description: ${playlist.description}, URL: ${songs[songs.length - 1].url}`);
+                });
+
+                if (songs.length === 0) {
+                    console.error("No valid songs found!");
+                }
+            })
+            .catch(error => console.error('Error fetching playlists:', error));
+
+        // 🎵 Function to play a selected song
+        function playSong(index) {
+            if (index < 0 || index >= songs.length) return;
+
+            currentSongIndex = index;
+            audioPlayer.src = songs[index].url;
+            audioPlayer.play();
+            currentSongText.textContent = `Playing: ${songs[index].name}`;
+
+            // Wait for audio to load
+            audioPlayer.onloadedmetadata = () => {
+                // Removed updateDuration and startUpdateCurrentTime functions
+            };
+        }
+
+        // ⏯️ Toggle Play/Pause
+        function togglePlayPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        // ⏭️ Play Next Song
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            playSong(currentSongIndex);
+        }
+
+        // ⏮️ Play Previous Song
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            playSong(currentSongIndex);
+        }
+
+        // 🔁 Toggle Loop
+        function toggleLoop() {
+            audioPlayer.loop = !audioPlayer.loop;
+            alert(audioPlayer.loop ? "Loop Enabled" : "Loop Disabled");
+        }
+		
+		// ♥ Like Playlist (Save to Database)
+    function likePlaylist(playlistId, button) {
+        fetch('../php/test3.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `playlist_id=${playlistId}`
+        })
+        .then(response => response.text())
+        .then(result => {
+            if (result.trim() === "success") {
+                button.classList.toggle('liked');
+                alert("Playlist added to Liked Songs!");
+            } else {
+                alert("Error adding playlist to Liked Songs.");
+            }
+        })
+        .catch(error => console.error('Error liking playlist:', error));
+    }
+	
+	document.querySelectorAll('.like-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const songId = this.dataset.id;
+        const playlistId = this.dataset.playlistId;
+        
+        // Send a POST request (optional, for backend insertion) or just redirect
+        fetch('', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `song_id=${songId}&playlist_id=${playlistId}`
+        }).then(response => response.text()).then(data => {
+            if (data === 'success') {
+                // Redirect to test3.php with song_id as a URL parameter
+                window.location.href = `test3.php?song_id=${songId}&playlist_id=${playlistId}`;
+            } else {
+                alert('An error occurred');
+            }
+        });
+    });
+});
+
+   function confirmLogout() {
+    const confirmation = confirm("Are you sure you want to logout?");
+    if (confirmation) {
+        // If the user confirms, submit the form to logout.php
+        document.getElementById('logoutForm').submit();
+    } else {
+        // If the user cancels, do nothing
+        console.log("Logout cancelled.");  // Optional: for debugging purposes
+    }
+}
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Library</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom,blue,white);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the form and song list */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #2825
+			color:white;
+            /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        /* Form styling */
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color:white;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Song list styling */
+        .song-list {
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .song-list li {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .song-list li span {
+            font-weight: bold;
+        }
+
+        .song-list li button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .song-list li button:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>User Music Library</h1>
+        <form id="library-form">
+            <div class="form-group">
+                <label for="song-name">Song Name:</label>
+                <input type="text" id="song-name" name="song-name" placeholder="Enter song name" required>
+            </div>
+            <button type="submit">Add Song</button>
+        </form>
+
+        <ul id="song-list" class="song-list"></ul>
+    </div>
+
+    <script>
+        // JavaScript to handle the form and song list
+        const form = document.getElementById('library-form');
+        const songNameInput = document.getElementById('song-name');
+        const songList = document.getElementById('song-list');
+
+        // Function to add a song to the list
+        function addSongToLibrary(songName) {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${songName}</span> <button onclick="removeSong(this)">Remove</button>`;
+            songList.appendChild(li);
+        }
+
+        // Function to remove a song from the list
+        function removeSong(button) {
+            const songItem = button.parentElement;
+            songItem.remove();
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const songName = songNameInput.value.trim();
+
+            if (songName) {
+                addSongToLibrary(songName);
+                songNameInput.value = ''; // Clear the input field
+            }
+        });
+    </script>
+
+</body>
+</html>

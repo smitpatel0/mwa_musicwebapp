@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Songs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background:linear-gradient(to bottom,blue,white);
+            color: #ffffff;
+        }
+        header {
+            background-color: #111;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #ffffff;
+        }
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #232323;
+            color: #ffffff;
+        }
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #1db954;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #17a74a;
+        }
+        #liked-songs {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #liked-songs li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #232323;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function addLikedSong(event) {
+            event.preventDefault();
+
+            const songInput = document.getElementById('song-input');
+            const songName = songInput.value.trim();
+
+            if (songName) {
+                fetch('../php/likedsongs.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `song_name=${encodeURIComponent(songName)}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'success') {
+                        const likedSongsList = document.getElementById('liked-songs');
+                        const newSong = document.createElement('li');
+                        newSong.textContent = songName;
+                        likedSongsList.appendChild(newSong);
+
+                        songInput.value = '';
+                    } else {
+                        alert('Failed to add the song.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Liked Songs</h1>
+    </header>
+    <main>
+	<?php include '../php/likedsongs.php'; ?>
+        <form onsubmit="addLikedSong(event)">
+            <input type="text" id="song-input" placeholder="Enter song name" required>
+            <button type="submit">Add to Liked Songs</button>
+        </form>
+        <ul id="liked-songs">
+            <?php include '../php/likedsongs.php'; ?>
+        </ul>
+    </main>
+</body>
+</html>

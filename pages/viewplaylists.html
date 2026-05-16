@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .playlist-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .playlist-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .playlist-card:hover {
+            transform: scale(1.05);
+        }
+        .song-container {
+            margin-top: 20px;
+        }
+        .song-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .song-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .controls button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #777;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Playlists</h1>
+        <div class="playlist-container" id="playlistContainer">
+            <!-- Playlists will be dynamically loaded here -->
+        </div>
+        <div class="song-container" id="songContainer">
+            <!-- Songs will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">Previous</button>
+        <button id="playPauseBtn">Play</button>
+        <button id="nextBtn">Next</button>
+        <audio id="audioPlayer" controls>
+		Your browser does not support the audio element.
+		</audio>
+    </div>
+
+    <script src="newjs.js"></script>
+</body>
+</html>

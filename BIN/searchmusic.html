@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Genre Search</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for content */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Genre selection and search */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Playlist display */
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .playlist li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .playlist li h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .playlist li p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #888;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Search Music by Genre</h1>
+
+        <!-- Genre Search Box -->
+        <div class="search-box">
+            <select id="genre-select">
+                <option value="">Select Genre</option>
+				<option value="classical">Classical</option>
+				<option value="hiphop">Hip-Hop</option>
+                <option value="romance">Romance</option>
+                <option value="pop">Pop</option>
+                <option value="gujarati">Gujarati</option>
+				<option value="english">English</option>
+            </select>
+            <button onclick="searchMusic()">Search</button>
+        </div>
+
+        <!-- Playlist Display -->
+        <div id="playlist-container">
+            <ul id="playlist" class="playlist"></ul>
+            <p id="no-results" class="no-results" style="display: none;">No songs found for this genre.</p>
+        </div>
+    </div>
+    <script src="../javascript/searchmusic.js"></script>
+</body>
+</html>
